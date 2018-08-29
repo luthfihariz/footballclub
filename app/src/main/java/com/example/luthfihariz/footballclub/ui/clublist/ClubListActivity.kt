@@ -3,30 +3,33 @@ package com.example.luthfihariz.footballclub.ui.clublist
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
-import org.jetbrains.anko.AnkoComponent
-import org.jetbrains.anko.AnkoContext
+import com.example.luthfihariz.footballclub.data.FootballClubRepository
 import org.jetbrains.anko.frameLayout
 import org.jetbrains.anko.recyclerview.v7.recyclerView
-import org.jetbrains.anko.setContentView
 
 class ClubListActivity : BaseActivity() {
 
     lateinit var clubsRecyclerView: RecyclerView
+
+    // should use injection here
+    private val clubListAdapter: ClubListAdapter by lazy {
+        ClubListAdapter()
+    }
+    private val repository: FootballClubRepository by lazy {
+        FootballClubRepository()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         frameLayout {
             clubsRecyclerView = recyclerView {
                 layoutManager = LinearLayoutManager(context)
-                adapter = ClubListAdapter()
+                adapter = clubListAdapter
             }
         }
 
-        clubsRecyclerView.adapter
-
-
+        clubListAdapter.footballClubs = repository.getClubs()
     }
 
 

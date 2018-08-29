@@ -1,22 +1,31 @@
 package com.example.luthfihariz.footballclub.ui.clublist
 
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.ViewGroup
+import com.example.luthfihariz.footballclub.data.model.FootballClub
+import org.jetbrains.anko.AnkoContext
 
-class ClubListAdapter : RecyclerView.Adapter<ClubListViewHolder>(){
+class ClubListAdapter : RecyclerView.Adapter<ClubListViewHolder>() {
 
 
+    var footballClubs: List<FootballClub> = ArrayList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ClubListViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
 
-    override fun getItemCount(): Int {
-        TODO("not implemented") //To change body of createdcd functions use File | Settings | File Templates.
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ClubListViewHolder =
+            ClubListViewHolder(ClubListViewHolder
+                    .ClubListItemUi()
+                    .createView(AnkoContext.create(parent.context, parent)))
 
-    override fun onBindViewHolder(p0: ClubListViewHolder, p1: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
+    override fun getItemCount(): Int = footballClubs.size
+
+    override fun onBindViewHolder(holder: ClubListViewHolder, pos: Int) {
+        holder.bind(footballClubs[pos])
     }
 
 }

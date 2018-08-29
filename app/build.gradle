@@ -27,6 +27,9 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
     implementation 'com.android.support:design:28.0.0-rc01'
 
+    // picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+
     // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"
 
