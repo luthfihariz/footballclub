@@ -15,6 +15,7 @@ class ClubListAdapter : RecyclerView.Adapter<ClubListViewHolder>() {
             notifyDataSetChanged()
         }
 
+    var clickListener: (FootballClub) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): ClubListViewHolder =
             ClubListViewHolder(ClubListViewHolder
@@ -25,7 +26,8 @@ class ClubListAdapter : RecyclerView.Adapter<ClubListViewHolder>() {
     override fun getItemCount(): Int = footballClubs.size
 
     override fun onBindViewHolder(holder: ClubListViewHolder, pos: Int) {
-        holder.bind(footballClubs[pos])
+        val club = footballClubs[holder.adapterPosition]
+        holder.bind(club, clickListener)
     }
 
 }

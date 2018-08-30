@@ -1,6 +1,7 @@
 package com.example.luthfihariz.footballclub.ui.clublist
 
 import android.support.v7.widget.RecyclerView
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -13,9 +14,13 @@ import org.jetbrains.anko.*
 
 class ClubListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-    fun bind(footballClub: FootballClub) {
+    fun bind(footballClub: FootballClub, clickListener : (FootballClub) -> Unit) {
         itemView.find<TextView>(R.id.tvClubName).text = footballClub.name
         itemView.find<ImageView>(R.id.ivClubLogo).loadImageUrl(footballClub.logoUrl)
+        itemView.setOnClickListener {
+            clickListener(footballClub)
+        }
+
     }
 
     class ClubListItemUi : AnkoComponent<ViewGroup> {
@@ -23,6 +28,7 @@ class ClubListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             linearLayout {
 
                 orientation = LinearLayout.HORIZONTAL
+                gravity = Gravity.CENTER_VERTICAL
 
                 lparams(width = matchParent, height = wrapContent) {
                     margin = dip(16)
@@ -30,7 +36,7 @@ class ClubListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
                 imageView {
                     id = R.id.ivClubLogo
-                }.lparams(width = dip(48), height = dip(48))
+                }.lparams(width = dip(64), height = dip(64))
 
                 textView {
                     id = R.id.tvClubName
