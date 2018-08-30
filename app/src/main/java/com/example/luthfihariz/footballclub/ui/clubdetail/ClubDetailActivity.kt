@@ -39,7 +39,7 @@ class ClubDetailActivity : BaseActivity() {
             gravity = Gravity.CENTER_HORIZONTAL
             padding = dip(16)
 
-            ivClubLogo = imageView().lparams(width = dip(80), height = dip(80))
+            ivClubLogo = imageView().lparams(width = dip(120), height = dip(120))
 
             tvClubName = textView {
                 textSize = 16f

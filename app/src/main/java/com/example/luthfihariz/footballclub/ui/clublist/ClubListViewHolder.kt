@@ -36,7 +36,7 @@ class ClubListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
                 imageView {
                     id = R.id.ivClubLogo
-                }.lparams(width = dip(64), height = dip(64))
+                }.lparams(width = dip(80), height = dip(80))
 
                 textView {
                     id = R.id.tvClubName
