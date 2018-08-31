@@ -7,10 +7,10 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("eventspastleague")
+    @GET("eventspastleague.php")
     fun getPrevMatches(@Query("id") leagueId: Int) : Observable<FootballMatchResponse>
 
-    @GET("eventsnextleague")
+    @GET("eventsnextleague.php")
     fun getNextMatches(@Query("id") leagueId: Int) : Observable<FootballMatchResponse>
 
     fun getEvent()

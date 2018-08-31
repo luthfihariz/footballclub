@@ -13,12 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity android:name=".ui.clublist.ClubListActivity" >
+        </activity>
+        <activity android:name=".ui.clubdetail.ClubDetailActivity" />
+        <activity android:name=".ui.matches.MatchesActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.clubdetail.ClubDetailActivity" />
-        <activity android:name=".ui.matches.MatchesActivity" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 </manifest>

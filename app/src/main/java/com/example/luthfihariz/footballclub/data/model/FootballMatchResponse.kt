@@ -1,11 +1,14 @@
 package com.example.luthfihariz.footballclub.data.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 data class FootballMatchResponse(
         @SerializedName("events") val matches: List<Match>
 )
 
+@Parcelize
 data class Match(
         val idEvent: String,
         val idSoccerXML: String,
@@ -58,4 +61,4 @@ data class Match(
         val strBanner: String?,
         val strMap: String?,
         val strLocked: String
-)
+) : Parcelable
