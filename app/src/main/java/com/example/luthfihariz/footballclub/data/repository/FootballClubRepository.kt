@@ -1,4 +1,4 @@
-package com.example.luthfihariz.footballclub.data
+package com.example.luthfihariz.footballclub.data.repository
 
 import com.example.luthfihariz.footballclub.data.model.FootballClub
 

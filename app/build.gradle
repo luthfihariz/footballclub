@@ -12,6 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "BASE_URL", "\"https://www.thesportsdb.com/api/v1/json/\""
+        buildConfigField "String", "TSDB_API_KEY", "\"1\""
     }
     buildTypes {
         release {
@@ -27,24 +30,53 @@ android {
 }
 
 ext {
-    anko_version = '0.10.5'
+    androidSupportVersion = '28.0.0-rc01'
+    ankoVersion = '0.10.5'
+    archLifecycleVersion = '1.1.1'
+    constraintLayoutVersion = '1.1.2'
+    retrofitVersion = '2.4.0'
+    okHttpVersion = '3.10.0'
+    koinVersion = '0.9.3'
+    rxjava2Version = '2.1.16'
+    rxandroidVersion = '2.0.2'
+    rxKotlinVersion = '2.2.0'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
-    implementation 'com.android.support:design:28.0.0-rc01'
+
+    // android support
+    implementation "com.android.support:appcompat-v7:$androidSupportVersion"
+    implementation "com.android.support:design:$androidSupportVersion"
+    implementation "com.android.support.constraint:constraint-layout:$constraintLayoutVersion"
 
     // picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
     // Anko Commons
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
 
     // Anko Layouts
-    implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
-    implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
-    implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
+    implementation "org.jetbrains.anko:anko-sdk25:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"
+
+    // arch component
+    implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$archLifecycleVersion"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    // koin
+    implementation "org.koin:koin-android-architecture:$koinVersion"
+
+    // rxjava2
+    implementation "io.reactivex.rxjava2:rxjava:$rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
+    implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
