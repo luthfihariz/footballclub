@@ -60,5 +60,7 @@ data class Match(
         val strThumb: String?,
         val strBanner: String?,
         val strMap: String?,
-        val strLocked: String
+        val strLocked: String,
+        var homeTeam: Team?,
+        var awayTeam: Team?
 ) : Parcelable

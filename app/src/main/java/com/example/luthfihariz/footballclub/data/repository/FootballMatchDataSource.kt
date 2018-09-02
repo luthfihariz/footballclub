@@ -9,4 +9,6 @@ interface FootballMatchDataSource{
     fun getPrevMatches() : Observable<List<Match>>
 
     fun getNextMatches() : Observable<List<Match>>
+
+    fun getMatchDetail(id: String) : Observable<Match>
 }

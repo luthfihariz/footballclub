@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:name=".FootballApp"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/AppTheme" >
         <activity android:name=".ui.clublist.ClubListActivity" >
         </activity>
@@ -21,6 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.matchdetail.MatchDetailActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -13,7 +13,6 @@ class MatchesActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_matches)
 
-
         bnvMainNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_prev_match -> {
@@ -30,6 +29,7 @@ class MatchesActivity : BaseActivity() {
                 }
             }
         }
+        bnvMainNav.selectedItemId = R.id.action_prev_match
     }
 
     private fun replaceContainer(type: Int) {

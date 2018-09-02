@@ -3,4 +3,11 @@
     <string name="vs">VS</string>
     <string name="prev_match">Prev Match</string>
     <string name="next_match">Next Match</string>
+    <string name="goals">Goals</string>
+    <string name="shots">Shots</string>
+    <string name="lineups">Lineups</string>
+    <string name="goal_keeper">Goal Keeper</string>
+    <string name="midfield">Midfield</string>
+    <string name="forward">Forward</string>
+    <string name="substitute">Substitute</string>
 </resources>

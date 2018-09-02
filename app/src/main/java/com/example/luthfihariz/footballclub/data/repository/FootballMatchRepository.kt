@@ -17,4 +17,21 @@ class FootballMatchRepository(private val apiService: ApiService) : FootballMatc
     override fun getNextMatches(): Observable<List<Match>> = apiService.getNextMatches(LEAGUE_ID).map {
         it.matches
     }
+
+
+    override fun getMatchDetail(id: String): Observable<Match> {
+        return apiService.getMatchDetail(id).flatMap {
+            val match = it.matches[0]
+            apiService.getTeamDetail(match.idHomeTeam).flatMap {
+                match.homeTeam = it.teams[0]
+
+                apiService.getTeamDetail(match.idAwayTeam).map {
+                    match.awayTeam = it.teams[0]
+                    match
+                }
+            }
+        }
+    }
+
+
 }
