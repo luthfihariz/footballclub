@@ -1,7 +1,6 @@
 package com.example.luthfihariz.footballclub.ui.clublist
 
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import android.view.ViewGroup
 import com.example.luthfihariz.footballclub.data.model.FootballClub
 import org.jetbrains.anko.AnkoContext

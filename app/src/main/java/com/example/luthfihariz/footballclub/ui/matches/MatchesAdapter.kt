@@ -14,7 +14,7 @@ class MatchesAdapter : RecyclerView.Adapter<MatchesViewHolder>() {
             notifyDataSetChanged()
         }
 
-    var clickListener : (Match) -> Unit = {}
+    var clickListener: (Match) -> Unit = {}
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): MatchesViewHolder = MatchesViewHolder(parent.inflate(R.layout.item_football_match))
 
@@ -22,7 +22,7 @@ class MatchesAdapter : RecyclerView.Adapter<MatchesViewHolder>() {
 
 
     override fun onBindViewHolder(holder: MatchesViewHolder, p1: Int) {
-       holder.bind(matches.get(holder.adapterPosition), clickListener)
+        holder.bind(matches[p1], clickListener)
     }
 
 }

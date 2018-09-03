@@ -2,9 +2,12 @@ package com.example.luthfihariz.footballclub.ui.matchdetail
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.view.MenuItem
 import com.example.luthfihariz.footballclub.R
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
+import com.example.luthfihariz.footballclub.common.extension.gone
 import com.example.luthfihariz.footballclub.common.extension.loadImageUrl
+import com.example.luthfihariz.footballclub.common.extension.visible
 import com.example.luthfihariz.footballclub.data.Resource
 import com.example.luthfihariz.footballclub.data.Status
 import com.example.luthfihariz.footballclub.data.model.Match
@@ -30,21 +33,50 @@ class MatchDetailActivity : BaseActivity() {
             matchDetailResource.observe(this@MatchDetailActivity, Observer { observeData(it) })
             getMatchDetail()
         }
+
+        setupToolbar()
+    }
+
+    private fun setupToolbar() {
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        return when {
+            item?.itemId == android.R.id.home -> {
+                finish()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun observeData(resource: Resource<Match>?) {
         resource?.let {
             when (resource.status) {
-
                 Status.LOADING -> {
+                    showLoading()
                 }
                 Status.ERROR -> {
+                    hideLoading()
                 }
                 Status.SUCCESS -> {
+                    hideLoading()
                     bindData(it.data)
                 }
             }
         }
+    }
+
+    private fun showLoading() {
+        pbMatchDetail.visible()
+        svContent.gone()
+    }
+
+    private fun hideLoading() {
+        pbMatchDetail.gone()
+        svContent.visible()
     }
 
     private fun bindData(data: Match?) {
@@ -66,6 +98,14 @@ class MatchDetailActivity : BaseActivity() {
 
             tvGoalKeeperAway.text = it.strAwayLineupGoalkeeper
             tvGoalKeeperHome.text = it.strHomeLineupGoalkeeper
+
+            tvMidfieldAway.text = it.strAwayLineupMidfield
+            tvMidfieldHome.text = it.strHomeLineupMidfield
+            tvForwardAway.text = it.strAwayLineupForward
+            tvForwardHome.text = it.strHomeLineupForward
+
+            tvSubstituteAway.text = it.strAwayLineupSubstitutes
+            tvSubstituteHome.text = it.strHomeLineupSubstitutes
         }
     }
 }
