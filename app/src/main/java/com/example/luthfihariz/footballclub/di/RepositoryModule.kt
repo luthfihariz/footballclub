@@ -6,5 +6,5 @@ import org.koin.dsl.module.applicationContext
 
 val repositoryModule = applicationContext {
 
-    bean { FootballMatchRepository(get()) as FootballMatchDataSource }
+    bean { FootballMatchRepository(get(), get()) as FootballMatchDataSource }
 }

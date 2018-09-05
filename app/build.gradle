@@ -57,13 +57,12 @@ dependencies {
     // picasso
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
-    // Anko Commons
+    // Anko
     implementation "org.jetbrains.anko:anko-commons:$ankoVersion"
-
-    // Anko Layouts
     implementation "org.jetbrains.anko:anko-sdk25:$ankoVersion"
     implementation "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-sqlite:$ankoVersion"
 
     // arch component
     implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"

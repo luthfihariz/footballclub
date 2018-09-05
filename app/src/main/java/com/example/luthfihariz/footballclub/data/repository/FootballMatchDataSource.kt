@@ -11,4 +11,12 @@ interface FootballMatchDataSource{
     fun getNextMatches() : Observable<List<Match>>
 
     fun getMatchDetail(id: String) : Observable<Match>
+
+    fun setFavorite(match : Match) : Observable<Long>
+
+    fun removeFromFavorite(matchId : String)
+
+    fun isFavorite(matchId : String) : Observable<Boolean>
+
+    fun getFavoriteEvents() : Observable<List<Match>>
 }
