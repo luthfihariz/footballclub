@@ -50,6 +50,7 @@ class MatchesFragment : Fragment() {
 
         viewModel.apply {
             matchesResource.observe(this@MatchesFragment, Observer { updateList(it) })
+            nextMatchResource.observe(this@MatchesFragment, Observer { updateList(it) })
             getMatches(arguments?.getInt(ARG_SCHEDULE_TYPE) ?: 0)
         }
 
@@ -58,7 +59,6 @@ class MatchesFragment : Fragment() {
     private fun updateList(resource: Resource<List<Match>>?) {
         resource?.let {
             when (it.status) {
-
                 Status.LOADING -> {
                     showLoading()
                 }

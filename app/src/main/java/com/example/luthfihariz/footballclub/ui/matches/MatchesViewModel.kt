@@ -6,7 +6,6 @@ import com.example.luthfihariz.footballclub.common.rx.BaseSchedulerProvider
 import com.example.luthfihariz.footballclub.data.Resource
 import com.example.luthfihariz.footballclub.data.model.Match
 import com.example.luthfihariz.footballclub.data.repository.FootballMatchDataSource
-import com.example.luthfihariz.footballclub.data.repository.FootballMatchRepository
 import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment.Companion.NEXT_MATCH
 import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment.Companion.PREV_MATCH
 import io.reactivex.rxkotlin.subscribeBy
@@ -16,6 +15,7 @@ class MatchesViewModel(private val repository: FootballMatchDataSource,
 
 
     val matchesResource = MutableLiveData<Resource<List<Match>>>()
+    val nextMatchResource = MutableLiveData<Resource<List<Match>>>()
 
     fun getMatches(type: Int) {
         when (type) {
@@ -46,17 +46,17 @@ class MatchesViewModel(private val repository: FootballMatchDataSource,
     }
 
     private fun getNextMatches() {
-        matchesResource.postValue(Resource.loading())
+        nextMatchResource.postValue(Resource.loading())
         repository.getNextMatches()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
                         onNext = {
-                            matchesResource.postValue(Resource.success(it))
+                            nextMatchResource.postValue(Resource.success(it))
                         },
 
                         onError = {
-                            matchesResource.postValue(Resource.error(it))
+                            nextMatchResource.postValue(Resource.error(it))
                         }
                 )
     }

@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="?android:actionBarSize"
+        android:background="@color/colorPrimary"
+        app:title="@string/football_club" />
 
-        <android.support.v7.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="?android:actionBarSize"
-            android:background="@color/colorPrimary"
-            app:title="Football Club" />
+    <ProgressBar
+        android:id="@+id/pbMatchDetail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <ScrollView
+        android:id="@+id/svContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -23,6 +33,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
+
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -42,7 +53,6 @@
                         style="@style/TextParagraph3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         tools:text="25 Jan 2015" />
@@ -54,7 +64,6 @@
                         android:layout_height="wrap_content"
                         android:padding="8dp"
                         android:text="@string/vs"
-                        android:textColor="@color/colorPrimaryDark"
                         app:layout_constraintBottom_toBottomOf="@+id/tvScoreHome"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
@@ -87,56 +96,69 @@
                         android:id="@+id/ivHomeLogo"
                         android:layout_width="0dp"
                         android:layout_height="84dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toLeftOf="@id/tvDate" />
+                        app:layout_constraintRight_toLeftOf="@id/tvDate"
+                        app:layout_constraintTop_toBottomOf="@id/tvDate" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvHomeTeam"
-                        style="@style/TextParagraph2"
+                        style="@style/TextParagraph3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="4dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tvAwayTeam"
+                        app:layout_constraintHorizontal_chainStyle="spread"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="@id/ivHomeLogo"
+                        app:layout_constraintLeft_toRightOf="@+id/tvAwayTeam"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ivHomeLogo"
+                        app:layout_constraintVertical_bias="0.5"
                         tools:text="Persib" />
 
                     <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/ivAwayLogo"
                         android:layout_width="0dp"
                         android:layout_height="84dp"
+                        android:layout_marginTop="8dp"
                         app:layout_constraintLeft_toRightOf="@id/tvDate"
-                        app:layout_constraintRight_toRightOf="parent" />
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvDate" />
 
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvAwayTeam"
-                        style="@style/TextParagraph2"
+                        style="@style/TextParagraph3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:layout_constraintLeft_toLeftOf="@id/ivAwayLogo"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:gravity="right"
+                        app:layout_constraintLeft_toRightOf="@id/tvHomeTeam"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/ivAwayLogo"
                         tools:text="Persija" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvAwayForm"
+                        style="@style/TextParagraph4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        app:layout_constraintLeft_toLeftOf="@id/ivAwayLogo"
+                        android:gravity="right"
+                        app:layout_constraintLeft_toLeftOf="@id/tvAwayTeam"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvAwayTeam"
                         tools:text="4-3-2-1" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvHomeForm"
+                        style="@style/TextParagraph4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
+                        android:gravity="left"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="@id/ivHomeLogo"
+                        app:layout_constraintRight_toRightOf="@id/tvHomeTeam"
                         app:layout_constraintTop_toBottomOf="@id/tvHomeTeam"
                         tools:text="4-3-2-1" />
 
@@ -157,7 +179,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
+                    android:padding="12dp">
 
 
                     <android.support.v7.widget.AppCompatTextView
@@ -165,13 +187,14 @@
                         style="@style/TextParagraph3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
+                        android:paddingBottom="8dp"
+                        android:text="@string/goals"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        android:text="@string/goals" />
+                        app:layout_constraintRight_toRightOf="parent" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvGoalsHome"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toStartOf="@+id/tvGoalsAway"
@@ -184,6 +207,7 @@
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvGoalsAway"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -210,7 +234,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
+                    android:padding="12dp">
 
 
                     <android.support.v7.widget.AppCompatTextView
@@ -218,14 +242,14 @@
                         style="@style/TextParagraph3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
+                        android:paddingBottom="8dp"
+                        android:text="@string/shots"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        android:text="@string/shots" />
+                        app:layout_constraintRight_toRightOf="parent" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvShotsHome"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toStartOf="@+id/tvShotsAway"
@@ -238,7 +262,7 @@
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvShotsAway"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -265,7 +289,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp">
+                    android:padding="12dp">
 
 
                     <android.support.v7.widget.AppCompatTextView
@@ -273,10 +297,9 @@
                         style="@style/TextParagraph3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/colorPrimary"
+                        android:text="@string/lineups"
                         app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        android:text="@string/lineups" />
+                        app:layout_constraintRight_toRightOf="parent" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvGoalKeeperTitle"
@@ -284,15 +307,15 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:textColor="@color/colorPrimary"
+                        android:paddingBottom="8dp"
+                        android:text="@string/goal_keeper"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvLineupsTitle"
-                        android:text="@string/goal_keeper" />
+                        app:layout_constraintTop_toBottomOf="@id/tvLineupsTitle" />
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvGoalKeeperHome"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toStartOf="@+id/tvGoalKeeperAway"
@@ -305,7 +328,7 @@
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvGoalKeeperAway"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -321,17 +344,17 @@
                         style="@style/TextParagraph4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/colorPrimary"
+                        android:layout_marginTop="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/midfield"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvGoalKeeperHome"
-                        android:text="@string/midfield" />
+                        app:layout_constraintTop_toBottomOf="@id/tvGoalKeeperHome" />
 
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvMidfieldHome"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toStartOf="@+id/tvMidfieldAway"
@@ -344,7 +367,7 @@
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvMidfieldAway"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -359,17 +382,17 @@
                         style="@style/TextParagraph4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/colorPrimary"
+                        android:layout_marginTop="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/forward"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvMidfieldHome"
-                        android:text="@string/forward" />
+                        app:layout_constraintTop_toBottomOf="@id/tvMidfieldHome" />
 
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvForwardHome"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toStartOf="@+id/tvForwardAway"
@@ -382,7 +405,7 @@
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvForwardAway"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -398,17 +421,17 @@
                         style="@style/TextParagraph4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:textColor="@color/colorPrimary"
+                        android:layout_marginTop="16dp"
+                        android:paddingBottom="8dp"
+                        android:text="@string/substitute"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvForwardHome"
-                        android:text="@string/substitute" />
+                        app:layout_constraintTop_toBottomOf="@id/tvForwardHome" />
 
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvSubstituteHome"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         app:layout_constraintEnd_toStartOf="@+id/tvSubstituteAway"
@@ -421,7 +444,7 @@
 
                     <android.support.v7.widget.AppCompatTextView
                         android:id="@+id/tvSubstituteAway"
-                        style="@style/TextParagraph3"
+                        style="@style/TextParagraph5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -437,5 +460,6 @@
 
         </LinearLayout>
 
-    </LinearLayout>
-</ScrollView>
+    </ScrollView>
+
+</LinearLayout>
