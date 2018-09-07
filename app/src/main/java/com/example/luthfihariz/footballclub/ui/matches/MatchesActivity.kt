@@ -3,6 +3,7 @@ package com.example.luthfihariz.footballclub.ui.matches
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.example.luthfihariz.footballclub.R
+import com.example.luthfihariz.footballclub.R.id.bnvMainNav
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
 import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment.Companion.NEXT_MATCH
 import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment.Companion.PREV_MATCH

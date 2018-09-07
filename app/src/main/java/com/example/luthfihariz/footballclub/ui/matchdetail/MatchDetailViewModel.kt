@@ -12,8 +12,9 @@ class MatchDetailViewModel(private val footballMatchRepository: FootballMatchDat
                            private val schedulerProvider: BaseSchedulerProvider) : ViewModel() {
 
     var matchId: String = ""
-
+    var match: Match? = null
     val matchDetailResource: MutableLiveData<Resource<Match>> = MutableLiveData()
+    val favoriteState: MutableLiveData<Boolean> = MutableLiveData()
 
     fun getMatchDetail() {
         matchDetailResource.postValue(Resource.loading())
@@ -22,6 +23,7 @@ class MatchDetailViewModel(private val footballMatchRepository: FootballMatchDat
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
                         onNext = {
+                            match = it
                             matchDetailResource.postValue(Resource.success(it))
                         },
 
@@ -30,5 +32,37 @@ class MatchDetailViewModel(private val footballMatchRepository: FootballMatchDat
                         }
                 )
 
+    }
+
+    fun addToFavorite() {
+        match?.let {
+            favoriteState.postValue(true) // set immediately to provide instant reward to user
+            footballMatchRepository.setFavorite(it)
+                    .subscribeOn(schedulerProvider.io())
+                    .observeOn(schedulerProvider.ui())
+                    .subscribeBy(
+                            onError = {
+                                favoriteState.postValue(false)
+                            },
+                            onNext = {
+                                favoriteState.postValue(true)
+                            }
+                    )
+        }
+
+    }
+
+    fun checkFavoriteState() {
+        footballMatchRepository.isFavorite(matchId)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
+                .subscribeBy(
+                        onError = {
+                            favoriteState.postValue(false)
+                        },
+                        onNext = {
+                            favoriteState.postValue(true)
+                        }
+                )
     }
 }

@@ -2,8 +2,10 @@ package com.example.luthfihariz.footballclub.ui.matchdetail
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import com.example.luthfihariz.footballclub.R
+import com.example.luthfihariz.footballclub.R.id.*
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
 import com.example.luthfihariz.footballclub.common.extension.gone
 import com.example.luthfihariz.footballclub.common.extension.loadImageUrl
@@ -23,6 +25,7 @@ class MatchDetailActivity : BaseActivity() {
     }
 
     private val viewModel by viewModel<MatchDetailViewModel>()
+    private
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,10 +34,23 @@ class MatchDetailActivity : BaseActivity() {
         viewModel.apply {
             matchId = intent.getStringExtra(ARG_MATCH_ID)
             matchDetailResource.observe(this@MatchDetailActivity, Observer { observeData(it) })
+            favoriteState.observe(this@MatchDetailActivity, Observer { observeFavoriteState(it) })
             getMatchDetail()
         }
 
         setupToolbar()
+    }
+
+    private fun observeFavoriteState(favorite: Boolean?) {
+        when (favorite) {
+            true -> {
+
+            }
+
+            false -> {
+
+            }
+        }
     }
 
     private fun setupToolbar() {
@@ -42,10 +58,18 @@ class MatchDetailActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
+    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
+        return super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return when {
             item?.itemId == android.R.id.home -> {
                 finish()
+                true
+            }
+            item?.itemId == R.id.add_to_favorite -> {
+                viewModel.addToFavorite()
                 true
             }
             else -> super.onOptionsItemSelected(item)
