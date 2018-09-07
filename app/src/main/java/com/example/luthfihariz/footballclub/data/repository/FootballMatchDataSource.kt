@@ -18,5 +18,5 @@ interface FootballMatchDataSource{
 
     fun isFavorite(matchId : String) : Observable<Boolean>
 
-    fun getFavoriteEvents() : Observable<List<Match>>
+    fun getFavoriteMatches() : Observable<List<Match>>
 }

@@ -67,7 +67,9 @@ class FootballMatchRepository(private val apiService: ApiService,
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getFavoriteEvents(): Observable<List<Match>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getFavoriteMatches(): Observable<List<Match>> {
+        return Observable.create<List<Match>>{
+
+        }
     }
 }

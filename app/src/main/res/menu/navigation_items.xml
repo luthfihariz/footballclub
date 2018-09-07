@@ -5,4 +5,7 @@
     <item android:id="@+id/action_next_match"
         android:title="@string/next_match"
         android:icon="@drawable/ic_event_white_24dp" />
+    <item android:id="@+id/action_fav_match"
+        android:title="@string/favorites"
+        android:icon="@drawable/ic_stars_white_24dp" />
 </menu>
