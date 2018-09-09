@@ -36,10 +36,13 @@ class FavoriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setupRecyclerView()
+    }
+
+    override fun onResume() {
+        super.onResume()
         viewModel.apply {
-            matchesResource.observe(this@FavoriteFragment, Observer { updateList(it) })
+            favoriteMatchesResource.observe(this@FavoriteFragment, Observer { updateList(it) })
             getFavoriteMatches()
         }
     }

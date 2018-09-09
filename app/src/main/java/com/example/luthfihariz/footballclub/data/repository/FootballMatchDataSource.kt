@@ -12,9 +12,9 @@ interface FootballMatchDataSource{
 
     fun getMatchDetail(id: String) : Observable<Match>
 
-    fun setFavorite(match : Match) : Observable<Long>
+    fun setFavorite(match : Match) : Observable<Long> // return observable of new id
 
-    fun removeFromFavorite(matchId : String)
+    fun removeFromFavorite(matchId : String) : Observable<Int> // return observable of affected rows
 
     fun isFavorite(matchId : String) : Observable<Boolean>
 

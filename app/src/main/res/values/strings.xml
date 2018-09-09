@@ -12,4 +12,6 @@
     <string name="substitute">Substitute</string>
     <string name="favorites">Favorites</string>
     <string name="football_club">Football Club</string>
+    <string name="added_to_fav">Added to favorite</string>
+    <string name="removed_from_fav">Removed from favorite</string>
 </resources>

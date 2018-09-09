@@ -63,6 +63,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-appcompat-v7:$ankoVersion"
     implementation "org.jetbrains.anko:anko-recyclerview-v7:$ankoVersion"
     implementation "org.jetbrains.anko:anko-sqlite:$ankoVersion"
+    implementation "org.jetbrains.anko:anko-design:$ankoVersion"
 
     // arch component
     implementation "android.arch.lifecycle:extensions:$archLifecycleVersion"
@@ -83,6 +84,9 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxkotlin:$rxKotlinVersion"
 
     implementation 'com.luthfihariz.kocax:kocax:0.1'
+
+    // stetho
+    implementation 'com.facebook.stetho:stetho:1.5.0'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'

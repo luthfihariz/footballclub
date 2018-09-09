@@ -2,10 +2,10 @@ package com.example.luthfihariz.footballclub.ui.matchdetail
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
 import com.example.luthfihariz.footballclub.R
-import com.example.luthfihariz.footballclub.R.id.*
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
 import com.example.luthfihariz.footballclub.common.extension.gone
 import com.example.luthfihariz.footballclub.common.extension.loadImageUrl
@@ -15,6 +15,7 @@ import com.example.luthfihariz.footballclub.data.Status
 import com.example.luthfihariz.footballclub.data.model.Match
 import com.luthfihariz.kocax.adjustTimePattern
 import kotlinx.android.synthetic.main.activity_match_detail.*
+import org.jetbrains.anko.design.snackbar
 import org.koin.android.architecture.ext.viewModel
 
 class MatchDetailActivity : BaseActivity() {
@@ -25,7 +26,8 @@ class MatchDetailActivity : BaseActivity() {
     }
 
     private val viewModel by viewModel<MatchDetailViewModel>()
-    private
+    private var menu: Menu? = null
+    private var isFavorite: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,22 +37,32 @@ class MatchDetailActivity : BaseActivity() {
             matchId = intent.getStringExtra(ARG_MATCH_ID)
             matchDetailResource.observe(this@MatchDetailActivity, Observer { observeData(it) })
             favoriteState.observe(this@MatchDetailActivity, Observer { observeFavoriteState(it) })
+            snackBarEvent.observe(this@MatchDetailActivity, Observer { showSnackbar(it) })
             getMatchDetail()
+            checkFavoriteState()
         }
 
         setupToolbar()
     }
 
+    private fun showSnackbar(message: String?) {
+        snackbar(llRoot, message ?: "")
+    }
+
     private fun observeFavoriteState(favorite: Boolean?) {
-        when (favorite) {
-            true -> {
-
-            }
-
-            false -> {
-
-            }
+        favorite?.let {
+            isFavorite = it
+            setFavorite(favorite == true)
         }
+    }
+
+    private fun setFavorite(isFavorite: Boolean) {
+        if (isFavorite)
+            menu?.getItem(0)?.icon = ContextCompat.getDrawable(this,
+                    R.drawable.ic_added_to_favorites)
+        else
+            menu?.getItem(0)?.icon = ContextCompat.getDrawable(this,
+                    R.drawable.ic_add_to_favorites)
     }
 
     private fun setupToolbar() {
@@ -58,8 +70,13 @@ class MatchDetailActivity : BaseActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        return super.onPrepareOptionsMenu(menu)
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.match_detail, menu)
+        this.menu = menu
+        setFavorite(isFavorite)
+        return true
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
@@ -69,7 +86,7 @@ class MatchDetailActivity : BaseActivity() {
                 true
             }
             item?.itemId == R.id.add_to_favorite -> {
-                viewModel.addToFavorite()
+                viewModel.toggleFavorite()
                 true
             }
             else -> super.onOptionsItemSelected(item)
