@@ -17,15 +17,6 @@ fun View.gone() {
     visibility = View.GONE
 }
 
-fun View.enable() {
-    isEnabled = true
-}
-
-fun View.disable() {
-    isEnabled = false
-}
-
-
 fun ViewGroup?.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = false): View {
     return LayoutInflater.from(this?.context).inflate(layoutRes, this, attachToRoot)
 }
