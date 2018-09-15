@@ -7,7 +7,7 @@ import org.koin.dsl.module.applicationContext
 
 val viewModelModule = applicationContext {
 
-    bean { MatchesViewModel(get(), get()) }
+    bean { MatchesViewModel(get(), get(), get()) }
     bean { MatchDetailViewModel(get(), get(), get()) }
     bean { FavoriteViewModel(get(), get()) }
 }

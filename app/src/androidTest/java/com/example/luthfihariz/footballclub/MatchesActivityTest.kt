@@ -8,7 +8,6 @@ import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.RootMatchers.withDecorView
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
-import com.example.luthfihariz.footballclub.ui.matches.MatchesActivity
 import com.example.luthfihariz.footballclub.ui.matches.MatchesViewHolder
 import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.not

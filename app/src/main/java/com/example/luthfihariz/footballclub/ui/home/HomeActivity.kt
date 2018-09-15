@@ -1,32 +1,33 @@
-package com.example.luthfihariz.footballclub.ui.matches
+package com.example.luthfihariz.footballclub.ui.home
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.example.luthfihariz.footballclub.R
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
-import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment.Companion.NEXT_MATCH
-import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment.Companion.PREV_MATCH
+import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment
 import com.example.luthfihariz.footballclub.ui.matches.favorite.FavoriteFragment
 import kotlinx.android.synthetic.main.activity_matches.*
 
-class MatchesActivity : BaseActivity() {
+class HomeActivity : BaseActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_matches)
+        setContentView(R.layout.activity_home)
+
 
         bnvMainNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.action_prev_match -> {
-                    replaceContainer(MatchesFragment.newInstance(PREV_MATCH))
+                R.id.action_match -> {
+                    replaceContainer(MatchesFragment.newInstance(MatchesFragment.NEXT_MATCH))
                     true
                 }
-                R.id.action_next_match -> {
-                    replaceContainer(MatchesFragment.newInstance(NEXT_MATCH))
+                R.id.action_team -> {
+
                     true
                 }
 
-                R.id.action_fav_match -> {
+                R.id.action_fav -> {
                     replaceContainer(FavoriteFragment.newInstance())
                     true
                 }
@@ -36,7 +37,7 @@ class MatchesActivity : BaseActivity() {
                 }
             }
         }
-        bnvMainNav.selectedItemId = R.id.action_prev_match
+        bnvMainNav.selectedItemId = R.id.action_match
     }
 
     private fun replaceContainer(fragment: Fragment) {

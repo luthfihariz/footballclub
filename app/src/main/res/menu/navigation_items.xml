@@ -1,11 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/action_prev_match"
-        android:title="@string/prev_match"
-        android:icon="@drawable/ic_past_event_white_24dp" />
-    <item android:id="@+id/action_next_match"
-        android:title="@string/next_match"
-        android:icon="@drawable/ic_event_white_24dp" />
-    <item android:id="@+id/action_fav_match"
-        android:title="@string/favorites"
-        android:icon="@drawable/ic_stars_white_24dp" />
+    <item
+        android:id="@+id/action_match"
+        android:icon="@drawable/ic_play_circle_filled_white_24dp"
+        android:title="@string/matches" />
+    <item
+        android:id="@+id/action_team"
+        android:icon="@drawable/ic_event_white_24dp"
+        android:title="@string/teams" />
+    <item
+        android:id="@+id/action_fav"
+        android:icon="@drawable/ic_stars_white_24dp"
+        android:title="@string/favorites" />
 </menu>

@@ -1,5 +1,6 @@
 package com.example.luthfihariz.footballclub.data.remote
 
+import com.example.luthfihariz.footballclub.data.model.FootballLeagueResponse
 import com.example.luthfihariz.footballclub.data.model.FootballMatchResponse
 import com.example.luthfihariz.footballclub.data.model.FootballTeamResponse
 import io.reactivex.Observable
@@ -19,4 +20,7 @@ interface ApiService {
 
     @GET("lookupteam.php")
     fun getTeamDetail(@Query("id") teamId: String): Observable<FootballTeamResponse>
+
+    @GET("all_leagues.php")
+    fun getLeagues(): Observable<FootballLeagueResponse>
 }
