@@ -6,9 +6,9 @@ import io.reactivex.Observable
 interface FootballMatchDataSource{
 
 
-    fun getPrevMatches() : Observable<List<Match>>
+    fun getPrevMatches(leagueId: String) : Observable<List<Match>>
 
-    fun getNextMatches() : Observable<List<Match>>
+    fun getNextMatches(leagueId: String) : Observable<List<Match>>
 
     fun getMatchDetail(id: String) : Observable<Match>
 

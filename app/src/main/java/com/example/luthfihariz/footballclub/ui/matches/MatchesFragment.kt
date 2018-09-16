@@ -1,6 +1,7 @@
 package com.example.luthfihariz.footballclub.ui.matches
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -12,9 +13,12 @@ import com.example.luthfihariz.footballclub.common.extension.gone
 import com.example.luthfihariz.footballclub.common.extension.visible
 import com.example.luthfihariz.footballclub.data.Resource
 import com.example.luthfihariz.footballclub.data.Status
+import com.example.luthfihariz.footballclub.data.model.League
 import com.example.luthfihariz.footballclub.data.model.Match
 import com.example.luthfihariz.footballclub.ui.matchdetail.MatchDetailActivity
 import com.example.luthfihariz.footballclub.ui.matchdetail.MatchDetailActivity.Companion.ARG_MATCH_ID
+import com.example.luthfihariz.footballclub.ui.matches.leaguepicker.LeaguePickerDialog
+import com.example.luthfihariz.footballclub.ui.matches.leaguepicker.LeaguePickerDialog.Companion.REQ_CODE
 import kotlinx.android.synthetic.main.fragment_matches.*
 import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.support.v4.startActivity
@@ -49,11 +53,27 @@ class MatchesFragment : Fragment() {
         setupRecyclerView()
 
         viewModel.apply {
-            matchesResource.observe(this@MatchesFragment, Observer { updateList(it) })
             nextMatchResource.observe(this@MatchesFragment, Observer { updateList(it) })
-            getMatches(arguments?.getInt(ARG_SCHEDULE_TYPE) ?: 0)
+            selectedLeague.observe(this@MatchesFragment, Observer { setupLeaguePicker(it!!) })
+            getMatchByLeague()
         }
 
+    }
+
+    private fun setupLeaguePicker(selectedLeague: League) {
+        tvLeague.setOnClickListener {
+            showLeaguePicker(selectedLeague)
+        }
+        ivLeaguePicker.setOnClickListener {
+            showLeaguePicker(selectedLeague)
+        }
+        tvLeague.text = selectedLeague.name
+    }
+
+    private fun showLeaguePicker(selectedLeague: League) {
+        LeaguePickerDialog.newInstance(viewModel.leagues, selectedLeague.id).apply {
+            setTargetFragment(this@MatchesFragment, REQ_CODE)
+        }.show(fragmentManager, LeaguePickerDialog::class.java.simpleName)
     }
 
     private fun updateList(resource: Resource<List<Match>>?) {
@@ -83,6 +103,20 @@ class MatchesFragment : Fragment() {
     private fun hideLoading() {
         pbMatches.gone()
         rvMatches.visible()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            REQ_CODE -> {
+                val selectedLeague = data?.getParcelableExtra<League>("league")
+                viewModel.selectedLeague.value = selectedLeague
+                viewModel.getMatches(NEXT_MATCH)
+            }
+            else -> {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
+
     }
 
     private fun setupRecyclerView() {

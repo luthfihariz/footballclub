@@ -15,15 +15,12 @@ import org.jetbrains.anko.db.select
 class FootballMatchRepository(private val apiService: ApiService,
                               private val database: FootballMatchDbHelper) : FootballMatchDataSource {
 
-    companion object {
-        const val LEAGUE_ID = 4328
-    }
 
-    override fun getPrevMatches(): Observable<List<Match>> = apiService.getPrevMatches(LEAGUE_ID).map {
+    override fun getPrevMatches(leagueId: String): Observable<List<Match>> = apiService.getPrevMatches(leagueId).map {
         it.matches
     }
 
-    override fun getNextMatches(): Observable<List<Match>> = apiService.getNextMatches(LEAGUE_ID).map {
+    override fun getNextMatches(leagueId: String): Observable<List<Match>> = apiService.getNextMatches(leagueId).map {
         it.matches
     }
 
