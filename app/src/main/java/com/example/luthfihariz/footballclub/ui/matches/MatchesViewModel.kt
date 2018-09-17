@@ -18,7 +18,7 @@ class MatchesViewModel(private val repository: FootballMatchDataSource,
 
 
     val matchesResource = MutableLiveData<Resource<List<Match>>>()
-    val nextMatchResource = MutableLiveData<Resource<List<Match>>>()
+    //val nextMatchResource = MutableLiveData<Resource<List<Match>>>()
     var leagues: List<League> = ArrayList()
     val selectedLeague = MutableLiveData<League>()
 
@@ -31,42 +31,52 @@ class MatchesViewModel(private val repository: FootballMatchDataSource,
                         onNext = {
                             leagues = it
                             selectedLeague.value = it[0]
-                            getMatches(NEXT_MATCH)
+                            getMatches(NEXT_MATCH, it[0].id)
                         }
                 )
     }
 
-    fun getMatches(type: Int) {
+    fun getMatches(type: Int, leagueId: String) {
+        matchesResource.postValue(Resource.loading())
         when (type) {
             PREV_MATCH -> {
-                getPrevMatches()
+                getPrevMatches(leagueId)
             }
 
             NEXT_MATCH -> {
-                getNextMatches()
+                getNextMatches(leagueId)
             }
         }
     }
 
-    private fun getPrevMatches() {
+    private fun getPrevMatches(leagueId: String) {
+        repository.getPrevMatches(leagueId)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
+                .subscribeBy(
+                        onNext = {
+                            matchesResource.postValue(Resource.success(it))
+                        },
+
+                        onError = {
+                            matchesResource.postValue(Resource.error(it))
+                        }
+                )
 
     }
 
-    private fun getNextMatches() {
-        selectedLeague.value?.let {
-            repository.getNextMatches(it.id)
-                    .subscribeOn(schedulerProvider.io())
-                    .observeOn(schedulerProvider.ui())
-                    .subscribeBy(
-                            onNext = {
-                                nextMatchResource.postValue(Resource.success(it))
-                            },
+    private fun getNextMatches(leagueId: String) {
+        repository.getNextMatches(leagueId)
+                .subscribeOn(schedulerProvider.io())
+                .observeOn(schedulerProvider.ui())
+                .subscribeBy(
+                        onNext = {
+                            matchesResource.postValue(Resource.success(it))
+                        },
 
-                            onError = {
-                                nextMatchResource.postValue(Resource.error(it))
-                            }
-                    )
-        }
-
+                        onError = {
+                            matchesResource.postValue(Resource.error(it))
+                        }
+                )
     }
 }

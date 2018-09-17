@@ -2,7 +2,7 @@ package com.example.luthfihariz.footballclub.di
 
 import com.example.luthfihariz.footballclub.ui.matchdetail.MatchDetailViewModel
 import com.example.luthfihariz.footballclub.ui.matches.MatchesViewModel
-import com.example.luthfihariz.footballclub.ui.matches.favorite.FavoriteViewModel
+import com.example.luthfihariz.footballclub.ui.favorite.FavoriteViewModel
 import org.koin.dsl.module.applicationContext
 
 val viewModelModule = applicationContext {

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.example.luthfihariz.footballclub.R
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
+import com.example.luthfihariz.footballclub.ui.favorite.FavoriteFragment
 import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment
-import com.example.luthfihariz.footballclub.ui.matches.favorite.FavoriteFragment
-import kotlinx.android.synthetic.main.activity_matches.*
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : BaseActivity() {
 

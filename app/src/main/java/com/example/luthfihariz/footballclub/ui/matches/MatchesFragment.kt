@@ -19,6 +19,7 @@ import com.example.luthfihariz.footballclub.ui.matchdetail.MatchDetailActivity
 import com.example.luthfihariz.footballclub.ui.matchdetail.MatchDetailActivity.Companion.ARG_MATCH_ID
 import com.example.luthfihariz.footballclub.ui.matches.leaguepicker.LeaguePickerDialog
 import com.example.luthfihariz.footballclub.ui.matches.leaguepicker.LeaguePickerDialog.Companion.REQ_CODE
+import com.example.luthfihariz.footballclub.ui.matches.prevmatch.PrevMatchActivity
 import kotlinx.android.synthetic.main.fragment_matches.*
 import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.support.v4.startActivity
@@ -53,11 +54,10 @@ class MatchesFragment : Fragment() {
         setupRecyclerView()
 
         viewModel.apply {
-            nextMatchResource.observe(this@MatchesFragment, Observer { updateList(it) })
+            matchesResource.observe(this@MatchesFragment, Observer { updateList(it) })
             selectedLeague.observe(this@MatchesFragment, Observer { setupLeaguePicker(it!!) })
             getMatchByLeague()
         }
-
     }
 
     private fun setupLeaguePicker(selectedLeague: League) {
@@ -68,6 +68,10 @@ class MatchesFragment : Fragment() {
             showLeaguePicker(selectedLeague)
         }
         tvLeague.text = selectedLeague.name
+        
+        btnPrev.setOnClickListener {
+            startActivity<PrevMatchActivity>("leagueId" to selectedLeague.id)
+        }
     }
 
     private fun showLeaguePicker(selectedLeague: League) {
@@ -109,8 +113,10 @@ class MatchesFragment : Fragment() {
         when (requestCode) {
             REQ_CODE -> {
                 val selectedLeague = data?.getParcelableExtra<League>("league")
-                viewModel.selectedLeague.value = selectedLeague
-                viewModel.getMatches(NEXT_MATCH)
+                selectedLeague?.let {
+                    viewModel.selectedLeague.value = it
+                    viewModel.getMatches(NEXT_MATCH, it.id)
+                }
             }
             else -> {
                 super.onActivityResult(requestCode, resultCode, data)

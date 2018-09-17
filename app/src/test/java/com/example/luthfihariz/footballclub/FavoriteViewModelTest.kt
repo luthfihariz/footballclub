@@ -7,7 +7,7 @@ import com.example.luthfihariz.footballclub.common.TestSchedulerProvider
 import com.example.luthfihariz.footballclub.data.Resource
 import com.example.luthfihariz.footballclub.data.model.Match
 import com.example.luthfihariz.footballclub.data.repository.FootballMatchDataSource
-import com.example.luthfihariz.footballclub.ui.matches.favorite.FavoriteViewModel
+import com.example.luthfihariz.footballclub.ui.favorite.FavoriteViewModel
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Rule
