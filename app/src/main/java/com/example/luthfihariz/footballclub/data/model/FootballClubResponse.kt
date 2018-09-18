@@ -3,12 +3,12 @@ package com.example.luthfihariz.footballclub.data.model
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-data class FootballTeamResponse(
-        val teams: List<Team>
+data class FootballClubResponse(
+        val club: List<Club>
 )
 
 @Parcelize
-data class Team(
+data class Club(
         val idTeam: String,
         val idSoccerXML: String,
         val intLoved: String,

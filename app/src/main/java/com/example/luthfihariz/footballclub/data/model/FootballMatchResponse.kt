@@ -19,7 +19,7 @@ data class Match(
         val strHomeLineupGoalkeeper: String? = null,
         val strHomeLineupDefense: String? = null,
         val strHomeLineupMidfield: String? = null,
-        val strHomeLineupForward: String? = null ,
+        val strHomeLineupForward: String? = null,
         val strHomeLineupSubstitutes: String? = null,
         val strHomeFormation: String? = null,
         val strAwayGoalDetails: String? = null,
@@ -34,6 +34,6 @@ data class Match(
         val strDate: String,
         val idHomeTeam: String,
         val idAwayTeam: String,
-        var homeTeam: Team? = null,
-        var awayTeam: Team? = null
+        var homeTeam: Club? = null,
+        var awayTeam: Club? = null
 ) : Parcelable
