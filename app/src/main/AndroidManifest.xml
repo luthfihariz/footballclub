@@ -21,6 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.matches.prevmatch.PrevMatchActivity" />
+        <activity android:name=".ui.player.DetailPlayerActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

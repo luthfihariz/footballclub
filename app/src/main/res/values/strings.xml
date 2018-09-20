@@ -17,4 +17,5 @@
     <string name="matches">Matches</string>
     <string name="teams">Teams</string>
     <string name="see_prev_match">See Previous Match</string>
+    <string name="overview">Overview</string>
 </resources>
