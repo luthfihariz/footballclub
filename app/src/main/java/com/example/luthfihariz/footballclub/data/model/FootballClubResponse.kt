@@ -1,10 +1,11 @@
 package com.example.luthfihariz.footballclub.data.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class FootballClubResponse(
-        val club: List<Club>
+        @SerializedName("teams") val clubs: List<Club>
 )
 
 @Parcelize

@@ -1,26 +1,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.luthfihariz.footballclub">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".FootballApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".FootballApp"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="false"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
 
         <activity android:name=".ui.matchdetail.MatchDetailActivity" />
-        <activity android:name=".ui.home.HomeActivity" >
+        <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.matches.prevmatch.PrevMatchActivity" />
+        <activity android:name=".ui.clubsdetail.ClubsDetailActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

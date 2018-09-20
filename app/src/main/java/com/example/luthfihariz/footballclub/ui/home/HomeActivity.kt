@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.example.luthfihariz.footballclub.R
 import com.example.luthfihariz.footballclub.common.base.BaseActivity
+import com.example.luthfihariz.footballclub.ui.clubs.ClubsFragment
 import com.example.luthfihariz.footballclub.ui.favorite.FavoriteFragment
 import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment
 import kotlinx.android.synthetic.main.activity_home.*
@@ -23,7 +24,7 @@ class HomeActivity : BaseActivity() {
                     true
                 }
                 R.id.action_team -> {
-
+                    replaceContainer(ClubsFragment.newInstance())
                     true
                 }
 

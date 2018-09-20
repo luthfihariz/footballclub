@@ -8,7 +8,7 @@ class FootballClubRepository(private val apiService: ApiService) : FootballClubD
 
     override fun getClubs(leagueId: String): Observable<List<Club>> {
         return apiService.getTeamByLeague(leagueId).map {
-            it.club
+            it.clubs
         }
     }
 }

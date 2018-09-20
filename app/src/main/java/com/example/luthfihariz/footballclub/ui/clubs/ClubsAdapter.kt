@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.luthfihariz.footballclub.R
 import com.example.luthfihariz.footballclub.common.extension.inflate
+import com.example.luthfihariz.footballclub.common.extension.loadImageUrl
 import com.example.luthfihariz.footballclub.data.model.Club
+import kotlinx.android.synthetic.main.item_club.view.*
 
 class ClubsAdapter : RecyclerView.Adapter<ClubsAdapter.ClubsViewHolder>() {
 
@@ -29,6 +31,8 @@ class ClubsAdapter : RecyclerView.Adapter<ClubsAdapter.ClubsViewHolder>() {
 
     inner class ClubsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(club: Club) {
+            itemView.tvClubName.text = club.strTeam
+            itemView.ivClubLogo.loadImageUrl(club.strTeamBadge)
             itemView.setOnClickListener {
                 clickListener(club)
             }

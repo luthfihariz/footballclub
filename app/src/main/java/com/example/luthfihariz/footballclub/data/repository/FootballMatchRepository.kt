@@ -29,10 +29,10 @@ class FootballMatchRepository(private val apiService: ApiService,
         return apiService.getMatchDetail(id).flatMap {
             val match = it.matches[0]
             apiService.getTeamDetail(match.idHomeTeam).flatMap {
-                match.homeTeam = it.teams[0]
+                match.homeTeam = it.clubs[0]
 
                 apiService.getTeamDetail(match.idAwayTeam).map {
-                    match.awayTeam = it.teams[0]
+                    match.awayTeam = it.clubs[0]
                     match
                 }
             }

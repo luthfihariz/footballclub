@@ -8,25 +8,24 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-       >
+        android:fillViewport="true">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingTop="16dp"
-            android:layout_height="wrap_content">
+            android:paddingTop="16dp">
 
             <TextView
                 android:id="@+id/tvClubLeague"
                 style="@style/TextParagraph2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintRight_toLeftOf="@id/ivLeaguePicker"
-                app:layout_constraintLeft_toLeftOf="parent"
                 android:ellipsize="end"
                 android:lines="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/ivLeaguePicker"
                 tools:text="English Premier League" />
 
             <ImageView
@@ -34,9 +33,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_expand_more_white_24dp"
-                app:layout_constraintLeft_toRightOf="@id/tvLeague"
                 app:layout_constraintBottom_toBottomOf="@+id/tvLeague"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/tvLeague"
                 app:layout_constraintTop_toTopOf="@+id/tvLeague" />
 
 
@@ -53,12 +52,12 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvClubs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvLeague" />
+                app:layout_constraintTop_toBottomOf="@+id/tvClubLeague" />
 
         </android.support.constraint.ConstraintLayout>
 

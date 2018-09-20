@@ -11,5 +11,5 @@ val viewModelModule = applicationContext {
     bean { MatchesViewModel(get(), get(), get()) }
     bean { MatchDetailViewModel(get(), get(), get()) }
     bean { FavoriteViewModel(get(), get()) }
-    bean { ClubsViewModel() }
+    bean { ClubsViewModel(get(), get(), get()) }
 }

@@ -1,6 +1,7 @@
 package com.example.luthfihariz.footballclub.ui.clubs
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
@@ -16,7 +17,6 @@ import com.example.luthfihariz.footballclub.data.model.Club
 import com.example.luthfihariz.footballclub.data.model.League
 import com.example.luthfihariz.footballclub.ui.matches.leaguepicker.LeaguePickerDialog
 import kotlinx.android.synthetic.main.fragment_clubs.*
-import kotlinx.android.synthetic.main.fragment_matches.*
 import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
 
@@ -24,6 +24,13 @@ class ClubsFragment : Fragment() {
 
     private val viewModel by viewModel<ClubsViewModel>()
     private val adapter by inject<ClubsAdapter>()
+
+    companion object {
+
+        fun newInstance(): ClubsFragment {
+            return ClubsFragment()
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
@@ -88,9 +95,25 @@ class ClubsFragment : Fragment() {
 
     private fun setupRecyclerView() {
         adapter.clickListener = {
-
+            
         }
-        rvMatches.layoutManager = LinearLayoutManager(context)
-        rvMatches.adapter = adapter
+        rvClubs.layoutManager = LinearLayoutManager(context)
+        rvClubs.adapter = adapter
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            LeaguePickerDialog.REQ_CODE -> {
+                val selectedLeague = data?.getParcelableExtra<League>("league")
+                selectedLeague?.let {
+                    viewModel.selectedLeague.value = it
+                    viewModel.getClubs()
+                }
+            }
+            else -> {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
+
     }
 }
