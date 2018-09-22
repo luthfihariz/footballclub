@@ -13,10 +13,23 @@
         android:layout_height="match_parent">
 
         <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/ivStadiumThumb"
-            android:layout_width="match_parent"
-            android:layout_height="180dp" />
+            android:id="@+id/ivClubStadiumThumb"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="H,16:9"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#99000000"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/ivClubStadiumThumb"
+            app:layout_constraintLeft_toLeftOf="@id/ivClubStadiumThumb"
+            app:layout_constraintRight_toRightOf="@id/ivClubStadiumThumb"
+            app:layout_constraintTop_toTopOf="@id/ivClubStadiumThumb" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ivLogo"
@@ -25,19 +38,10 @@
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginStart="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/ivStadiumThumb"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/ivClubStadiumThumb"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <android.support.v7.widget.AppCompatImageView
-            android:id="@+id/ivClubStadium"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:alpha="0.3"
-            android:background="#000"
-            app:layout_constraintBottom_toBottomOf="@id/ivStadiumThumb"
-            app:layout_constraintLeft_toLeftOf="@id/ivStadiumThumb"
-            app:layout_constraintRight_toRightOf="@id/ivStadiumThumb"
-            app:layout_constraintTop_toTopOf="@id/ivStadiumThumb" />
 
         <TextView
             android:id="@+id/tvName"
@@ -76,14 +80,14 @@
 
         <TextView
             android:id="@+id/tvOverviewTitle"
-            style="@style/TextParagraph2"
+            style="@style/TextParagraph1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:text="@string/overview"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ivStadiumThumb"
-            tools:text="@string/overview" />
+            app:layout_constraintTop_toBottomOf="@id/rvPlayer" />
 
 
         <TextView
@@ -92,32 +96,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:alpha="0.6"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvOverviewTitle"
             tools:text="@string/overview" />
 
-
-        <TextView
-            android:id="@+id/tvPlayerTitle"
-            style="@style/TextParagraph2"
+        <ProgressBar
+            android:id="@+id/pbPlayers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
             android:layout_marginTop="16dp"
-            android:text="Player"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvOverview" />
-
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivClubStadiumThumb" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvPlayer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPlayerTitle" />
+            android:layout_margin="16dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@id/tvOverviewTitle"
+            app:layout_constraintTop_toBottomOf="@+id/ivClubStadiumThumb"
+            app:layout_constraintVertical_bias="0.1" />
 
     </android.support.constraint.ConstraintLayout>
 

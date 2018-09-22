@@ -15,7 +15,7 @@ data class Club(
         val intLoved: String?,
         val strTeam: String,
         val strTeamShort: String?,
-        val strAlternate: String,
+        val strAlternate: String?,
         val intFormedYear: String,
         val strSport: String,
         val strLeague: String,

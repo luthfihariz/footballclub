@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.matches.prevmatch.PrevMatchActivity" />
-        <activity android:name=".ui.player.DetailPlayerActivity" />
+        <activity android:name=".ui.player.PlayerDetailActivity" />
         <activity android:name=".ui.clubsdetail.ClubDetailActivity" />
 
         <meta-data
