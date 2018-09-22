@@ -12,9 +12,9 @@ data class FootballClubResponse(
 data class Club(
         val idTeam: String,
         val idSoccerXML: String,
-        val intLoved: String,
+        val intLoved: String?,
         val strTeam: String,
-        val strTeamShort: String,
+        val strTeamShort: String?,
         val strAlternate: String,
         val intFormedYear: String,
         val strSport: String,
@@ -33,11 +33,11 @@ data class Club(
         val strFacebook: String,
         val strTwitter: String,
         val strInstagram: String,
-        val strDescriptionEN: String,
-        val strDescriptionDE: String,
+        val strDescriptionEN: String?,
+        val strDescriptionDE: String?,
         val strDescriptionFR: String?,
         val strDescriptionCN: String?,
-        val strDescriptionIT: String,
+        val strDescriptionIT: String?,
         val strDescriptionJP: String?,
         val strDescriptionRU: String?,
         val strDescriptionES: String?,
@@ -61,3 +61,5 @@ data class Club(
         val strYoutube: String,
         val strLocked: String
 ) : Parcelable
+
+

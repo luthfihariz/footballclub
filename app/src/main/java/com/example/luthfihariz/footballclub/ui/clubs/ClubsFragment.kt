@@ -15,8 +15,10 @@ import com.example.luthfihariz.footballclub.data.Resource
 import com.example.luthfihariz.footballclub.data.Status
 import com.example.luthfihariz.footballclub.data.model.Club
 import com.example.luthfihariz.footballclub.data.model.League
+import com.example.luthfihariz.footballclub.ui.clubsdetail.ClubDetailActivity
 import com.example.luthfihariz.footballclub.ui.matches.leaguepicker.LeaguePickerDialog
 import kotlinx.android.synthetic.main.fragment_clubs.*
+import org.jetbrains.anko.support.v4.startActivity
 import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
 
@@ -95,7 +97,7 @@ class ClubsFragment : Fragment() {
 
     private fun setupRecyclerView() {
         adapter.clickListener = {
-            
+            startActivity<ClubDetailActivity>("club" to it)
         }
         rvClubs.layoutManager = LinearLayoutManager(context)
         rvClubs.adapter = adapter
