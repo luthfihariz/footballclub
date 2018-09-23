@@ -8,6 +8,6 @@ import org.koin.dsl.module.applicationContext
 val adapterModule = applicationContext {
 
     factory { MatchesAdapter() }
-    bean { ClubsAdapter() }
-    bean { ClubPlayersAdapter() }
+    factory { ClubsAdapter() }
+    factory { ClubPlayersAdapter() }
 }

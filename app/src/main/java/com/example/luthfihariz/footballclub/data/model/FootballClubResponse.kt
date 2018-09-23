@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class FootballClubResponse(
-        @SerializedName("teams") val clubs: List<Club>
+        @SerializedName("teams") val clubs: List<Club>?
 )
 
 @Parcelize

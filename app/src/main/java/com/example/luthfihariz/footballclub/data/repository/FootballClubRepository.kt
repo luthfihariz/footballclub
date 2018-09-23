@@ -9,7 +9,7 @@ class FootballClubRepository(private val apiService: ApiService) : FootballClubD
 
     override fun getClubs(leagueId: String): Observable<List<Club>> {
         return apiService.getTeamByLeague(leagueId).map {
-            it.clubs
+            it.clubs ?: arrayListOf()
         }
     }
 
@@ -21,7 +21,7 @@ class FootballClubRepository(private val apiService: ApiService) : FootballClubD
 
     override fun searchClubs(query: String): Observable<List<Club>> {
         return apiService.searchTeams(query).map {
-            it.clubs
+            it.clubs ?: arrayListOf()
         }
     }
 }

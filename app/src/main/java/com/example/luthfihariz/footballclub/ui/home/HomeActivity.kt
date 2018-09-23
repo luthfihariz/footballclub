@@ -9,11 +9,14 @@ import com.example.luthfihariz.footballclub.common.base.BaseActivity
 import com.example.luthfihariz.footballclub.ui.clubs.ClubsFragment
 import com.example.luthfihariz.footballclub.ui.favorite.FavoriteFragment
 import com.example.luthfihariz.footballclub.ui.matches.MatchesFragment
+import com.example.luthfihariz.footballclub.ui.search.clubs.SearchClubsActivity
 import com.example.luthfihariz.footballclub.ui.search.matches.SearchMatchesActivity
 import kotlinx.android.synthetic.main.activity_home.*
 import org.jetbrains.anko.startActivity
 
 class HomeActivity : BaseActivity() {
+
+    private var searchType: String? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,15 +27,21 @@ class HomeActivity : BaseActivity() {
         bnvMainNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.action_match -> {
+                    searchType = "match"
+                    refreshMenu()
                     replaceContainer(MatchesFragment.newInstance(MatchesFragment.NEXT_MATCH))
                     true
                 }
                 R.id.action_team -> {
+                    searchType = "team"
+                    refreshMenu()
                     replaceContainer(ClubsFragment.newInstance())
                     true
                 }
 
                 R.id.action_fav -> {
+                    searchType = null
+                    refreshMenu()
                     replaceContainer(FavoriteFragment.newInstance())
                     true
                 }
@@ -46,6 +55,10 @@ class HomeActivity : BaseActivity() {
         setSupportActionBar(toolbar)
     }
 
+    private fun refreshMenu() {
+        invalidateOptionsMenu()
+    }
+
     private fun replaceContainer(fragment: Fragment) {
         supportFragmentManager
                 .beginTransaction()
@@ -54,17 +67,22 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.home, menu)
-        return true
+        return searchType?.let {
+            menuInflater.inflate(R.menu.home, menu)
+            true
+        } ?: false
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         return if (item?.itemId == R.id.action_search) {
-            startActivity<SearchMatchesActivity>()
+            if (searchType == "match") {
+                startActivity<SearchMatchesActivity>()
+            } else if (searchType == "team") {
+                startActivity<SearchClubsActivity>()
+            }
             true
         } else {
             super.onOptionsItemSelected(item)
         }
-
     }
 }
