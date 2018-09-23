@@ -19,4 +19,6 @@
     <string name="see_prev_match">See Previous Match</string>
     <string name="overview">Overview</string>
     <string name="search">Search</string>
+    <string name="favorite_matches">Favorite Matches</string>
+    <string name="favorite_clubs">Favorite Clubs</string>
 </resources>

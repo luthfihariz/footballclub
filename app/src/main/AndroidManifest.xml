@@ -25,6 +25,8 @@
         <activity android:name=".ui.clubsdetail.ClubDetailActivity" />
         <activity android:name=".ui.search.matches.SearchMatchesActivity" />
         <activity android:name=".ui.search.clubs.SearchClubsActivity" />
+        <activity android:name=".ui.favorite.clubs.FavoriteClubsActivity" />
+        <activity android:name=".ui.favorite.match.FavoriteMatchesActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
