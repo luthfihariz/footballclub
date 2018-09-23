@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class FootballMatchResponse(
-        @SerializedName("events") val matches: List<Match>
+        @SerializedName("events") val matches: List<Match>?
 )
 
 @Parcelize
@@ -31,7 +31,7 @@ data class Match(
         val strAwayFormation: String? = null,
         val intHomeShots: Int? = null,
         val intAwayShots: Int? = null,
-        val strDate: String,
+        val strDate: String?,
         val idHomeTeam: String,
         val idAwayTeam: String,
         var homeTeam: Club? = null,

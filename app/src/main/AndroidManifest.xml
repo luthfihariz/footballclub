@@ -23,6 +23,8 @@
         <activity android:name=".ui.matches.prevmatch.PrevMatchActivity" />
         <activity android:name=".ui.player.PlayerDetailActivity" />
         <activity android:name=".ui.clubsdetail.ClubDetailActivity" />
+        <activity android:name=".ui.search.matches.SearchMatchesActivity" />
+        <activity android:name=".ui.search.clubs.SearchClubsActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

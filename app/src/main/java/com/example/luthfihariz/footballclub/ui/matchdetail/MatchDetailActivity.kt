@@ -122,7 +122,7 @@ class MatchDetailActivity : BaseActivity() {
 
     private fun bindData(data: Match?) {
         data?.let {
-            tvDate.text = it.strDate.adjustTimePattern("dd/MM/yy", "EEE, dd MMM yyyy")
+            tvDate.text = it.strDate?.adjustTimePattern("dd/MM/yy", "EEE, dd MMM yyyy")
             tvAwayTeam.text = it.strAwayTeam
             tvHomeTeam.text = it.strHomeTeam
             ivAwayLogo.loadImageUrl(it.awayTeam?.strTeamBadge)

@@ -10,7 +10,7 @@ class MatchesViewHolder( itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(match: Match, clickListener : (Match) -> Unit){
         itemView.apply{
-            tvDate.text = match.strDate.adjustTimePattern("dd/MM/yy", "EEE, dd MMM yyyy")
+            tvDate.text = match.strDate?.adjustTimePattern("dd/MM/yy", "EEE, dd MMM yyyy")
             tvTeamHome.text = match.strHomeTeam
             tvTeamAway.text = match.strAwayTeam
 

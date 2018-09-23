@@ -27,13 +27,15 @@ class FootballMatchRepository(private val apiService: ApiService,
 
     override fun getMatchDetail(id: String): Observable<Match> {
         return apiService.getMatchDetail(id).flatMap {
-            val match = it.matches[0]
-            apiService.getTeamDetail(match.idHomeTeam).flatMap {
-                match.homeTeam = it.clubs[0]
+            it.matches?.let {
+                val match = it[0]
+                apiService.getTeamDetail(match.idHomeTeam).flatMap {
+                    match.homeTeam = it.clubs[0]
 
-                apiService.getTeamDetail(match.idAwayTeam).map {
-                    match.awayTeam = it.clubs[0]
-                    match
+                    apiService.getTeamDetail(match.idAwayTeam).map {
+                        match.awayTeam = it.clubs[0]
+                        match
+                    }
                 }
             }
         }
@@ -100,6 +102,12 @@ class FootballMatchRepository(private val apiService: ApiService,
             } catch (e: SQLiteConstraintException) {
                 it.onError(e)
             }
+        }
+    }
+
+    override fun searchMatches(query: String): Observable<List<Match>> {
+        return apiService.searchMatches(query).map {
+            it.matches ?: arrayListOf()
         }
     }
 }

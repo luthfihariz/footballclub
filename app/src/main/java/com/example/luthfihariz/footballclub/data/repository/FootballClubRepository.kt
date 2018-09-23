@@ -18,4 +18,10 @@ class FootballClubRepository(private val apiService: ApiService) : FootballClubD
             it.players
         }
     }
+
+    override fun searchClubs(query: String): Observable<List<Club>> {
+        return apiService.searchTeams(query).map {
+            it.clubs
+        }
+    }
 }

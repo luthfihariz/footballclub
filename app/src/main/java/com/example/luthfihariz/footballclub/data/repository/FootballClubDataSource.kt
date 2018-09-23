@@ -10,4 +10,6 @@ interface FootballClubDataSource {
 
     fun getPlayers(clubId: String): Observable<List<Player>>
 
+    fun searchClubs(query: String): Observable<List<Club>>
+
 }
