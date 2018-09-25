@@ -29,4 +29,8 @@ class FavoriteViewModel(private val repository: FootballMatchDataSource,
                 )
     }
 
+    fun getFavoriteClubs() {
+
+    }
+
 }
