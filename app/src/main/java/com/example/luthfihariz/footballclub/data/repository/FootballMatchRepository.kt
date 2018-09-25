@@ -51,7 +51,7 @@ class FootballMatchRepository(private val apiService: ApiService,
         return Observable.create<Long> {
             try {
                 database.use {
-                    val insertedId = insert(DbTable.FAVORITED_MATCH,
+                    val insertedId = insert(DbTable.FAVORITE_MATCH,
                             DbRow.MATCH_ID to match.idEvent,
                             DbRow.MATCH_DATE to match.strDate,
                             DbRow.MATCH_HOME_TEAM to match.strHomeTeam,
@@ -70,7 +70,7 @@ class FootballMatchRepository(private val apiService: ApiService,
         return Observable.create<Int> {
             try {
                 database.use {
-                    val affectedRows = delete(DbTable.FAVORITED_MATCH, "(${DbRow.MATCH_ID} = {id})",
+                    val affectedRows = delete(DbTable.FAVORITE_MATCH, "(${DbRow.MATCH_ID} = {id})",
                             "id" to matchId)
                     it.onNext(affectedRows)
                 }
@@ -85,7 +85,7 @@ class FootballMatchRepository(private val apiService: ApiService,
         return Observable.create<Boolean> {
             try {
                 database.use {
-                    val result = select(DbTable.FAVORITED_MATCH)
+                    val result = select(DbTable.FAVORITE_MATCH)
                             .whereSimple("(${DbRow.MATCH_ID} = ?)", matchId)
                     val matches = result.parseList(MatchRowParser())
                     it.onNext(matches.isNotEmpty())
@@ -100,7 +100,7 @@ class FootballMatchRepository(private val apiService: ApiService,
         return Observable.create<List<Match>> {
             try {
                 database.use {
-                    val result = select(DbTable.FAVORITED_MATCH)
+                    val result = select(DbTable.FAVORITE_MATCH)
                     val favoritedMatches = result.parseList(MatchRowParser())
                     it.onNext(favoritedMatches)
                 }

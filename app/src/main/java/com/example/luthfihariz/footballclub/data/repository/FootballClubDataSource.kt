@@ -12,4 +12,12 @@ interface FootballClubDataSource {
 
     fun searchClubs(query: String): Observable<List<Club>>
 
+    fun getFavoriteClubs(): Observable<List<Club>>
+
+    fun setFavorite(club: Club): Observable<Long>
+
+    fun isFavorite(clubId: String): Observable<Boolean>
+
+    fun removeFromFavorite(clubId: String): Observable<Int>
+
 }
