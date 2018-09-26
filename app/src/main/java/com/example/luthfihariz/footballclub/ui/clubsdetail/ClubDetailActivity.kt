@@ -13,6 +13,7 @@ import com.example.luthfihariz.footballclub.data.model.Club
 import com.example.luthfihariz.footballclub.data.model.Player
 import com.example.luthfihariz.footballclub.ui.player.PlayerDetailActivity
 import kotlinx.android.synthetic.main.activity_club_detail.*
+import org.jetbrains.anko.design.snackbar
 import org.jetbrains.anko.startActivity
 import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
@@ -32,9 +33,29 @@ class ClubDetailActivity : BaseActivity() {
 
         with(viewModel) {
             players.observe(this@ClubDetailActivity, Observer { updatePlayerList(it) })
-            clubId = club.idTeam
+            favoriteState.observe(this@ClubDetailActivity, Observer { observeFavoriteState(it) })
+            snackBarEvent.observe(this@ClubDetailActivity, Observer { observeSnackBar(it) })
+            this.club = club
+            checkFavoriteState()
             showLoading()
             getPlayers()
+        }
+
+        ivFavorite.setOnClickListener {
+            viewModel.toggleFavorite()
+        }
+    }
+
+    private fun observeSnackBar(message: String?) {
+        message?.let {
+            snackbar(clRoot, it)
+        }
+    }
+
+    private fun observeFavoriteState(isFavorite: Boolean?) {
+        when (isFavorite) {
+            true -> ivFavorite.setImageResource(R.drawable.ic_added_to_favorites)
+            false -> ivFavorite.setImageResource(R.drawable.ic_add_to_favorites)
         }
     }
 

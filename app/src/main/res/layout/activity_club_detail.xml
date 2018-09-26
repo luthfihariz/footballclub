@@ -10,6 +10,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:id="@+id/clRoot"
         android:layout_height="match_parent">
 
         <android.support.v7.widget.AppCompatImageView
@@ -30,6 +31,15 @@
             app:layout_constraintLeft_toLeftOf="@id/ivClubStadiumThumb"
             app:layout_constraintRight_toRightOf="@id/ivClubStadiumThumb"
             app:layout_constraintTop_toTopOf="@id/ivClubStadiumThumb" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/ivClubStadiumThumb"
+            android:src="@drawable/ic_add_to_favorites"
+            app:layout_constraintRight_toRightOf="@id/ivClubStadiumThumb" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ivLogo"

@@ -24,7 +24,7 @@ import org.jetbrains.anko.db.*
 
 object DbConstant {
     const val DB_NAME = "FootballMatch.db"
-    const val DB_VERSION = 2
+    const val DB_VERSION = 3
 }
 
 object DbTable {

@@ -47,7 +47,7 @@ class FavoriteMatchesActivity : BaseActivity() {
     }
 
     private fun setupRecyclerView() {
-        rvFavMatches.layoutManager = LinearLayoutManager(this)
-        rvFavMatches.adapter = adapter
+        rvFav.layoutManager = LinearLayoutManager(this)
+        rvFav.adapter = adapter
     }
 }

@@ -7,5 +7,5 @@ val repositoryModule = applicationContext {
 
     bean { FootballMatchRepository(get(), get()) as FootballMatchDataSource }
     bean { FootballLeagueRepository(get()) as FootballLeagueDataSource }
-    bean { FootballClubRepository(get()) as FootballClubDataSource }
+    bean { FootballClubRepository(get(), get()) as FootballClubDataSource }
 }
