@@ -18,12 +18,12 @@ class MatchesViewModel(private val repository: FootballMatchDataSource,
 
 
     val matchesResource = MutableLiveData<Resource<List<Match>>>()
-    //val nextMatchResource = MutableLiveData<Resource<List<Match>>>()
+    val nextMatchResource = MutableLiveData<Resource<List<Match>>>()
     var leagues: List<League> = ArrayList()
     val selectedLeague = MutableLiveData<League>()
 
     fun getMatchByLeague() {
-        matchesResource.postValue(Resource.loading())
+        nextMatchResource.postValue(Resource.loading())
         leagueRepository.getLeague()
                 .subscribeOn(schedulerProvider.io())
                 .observeOn(schedulerProvider.ui())
@@ -37,6 +37,7 @@ class MatchesViewModel(private val repository: FootballMatchDataSource,
     }
 
     fun getMatches(type: Int, leagueId: String) {
+        nextMatchResource.postValue(Resource.loading())
         matchesResource.postValue(Resource.loading())
         when (type) {
             PREV_MATCH -> {
@@ -71,11 +72,11 @@ class MatchesViewModel(private val repository: FootballMatchDataSource,
                 .observeOn(schedulerProvider.ui())
                 .subscribeBy(
                         onNext = {
-                            matchesResource.postValue(Resource.success(it))
+                            nextMatchResource.postValue(Resource.success(it))
                         },
 
                         onError = {
-                            matchesResource.postValue(Resource.error(it))
+                            nextMatchResource.postValue(Resource.error(it))
                         }
                 )
     }

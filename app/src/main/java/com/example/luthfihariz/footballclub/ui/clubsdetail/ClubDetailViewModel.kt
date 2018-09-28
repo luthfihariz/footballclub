@@ -9,11 +9,9 @@ import com.example.luthfihariz.footballclub.common.rx.BaseSchedulerProvider
 import com.example.luthfihariz.footballclub.data.model.Club
 import com.example.luthfihariz.footballclub.data.model.Player
 import com.example.luthfihariz.footballclub.data.repository.FootballClubDataSource
-import com.example.luthfihariz.footballclub.data.repository.FootballLeagueDataSource
 import io.reactivex.rxkotlin.subscribeBy
 
 class ClubDetailViewModel(private val repository: FootballClubDataSource,
-                          private val leagueRepository: FootballLeagueDataSource,
                           private val schedulerProvider: BaseSchedulerProvider,
                           private val app: Application) : AndroidViewModel(app) {
 

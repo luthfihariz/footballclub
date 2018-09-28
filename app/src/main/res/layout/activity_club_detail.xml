@@ -9,9 +9,10 @@
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
         android:id="@+id/clRoot"
-        android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants">
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/ivClubStadiumThumb"
@@ -37,8 +38,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="@id/ivClubStadiumThumb"
             android:src="@drawable/ic_add_to_favorites"
+            app:layout_constraintBottom_toBottomOf="@id/ivClubStadiumThumb"
             app:layout_constraintRight_toRightOf="@id/ivClubStadiumThumb" />
 
         <android.support.v7.widget.AppCompatImageView

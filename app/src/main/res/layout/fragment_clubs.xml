@@ -33,10 +33,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_expand_more_white_24dp"
-                app:layout_constraintBottom_toBottomOf="@+id/tvLeague"
+                app:layout_constraintBottom_toBottomOf="@+id/tvClubLeague"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/tvLeague"
-                app:layout_constraintTop_toTopOf="@+id/tvLeague" />
+                app:layout_constraintTop_toTopOf="@+id/tvClubLeague" />
 
 
             <ProgressBar

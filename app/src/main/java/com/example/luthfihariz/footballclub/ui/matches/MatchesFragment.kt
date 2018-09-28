@@ -54,7 +54,7 @@ class MatchesFragment : Fragment() {
         setupRecyclerView()
 
         viewModel.apply {
-            matchesResource.observe(this@MatchesFragment, Observer { updateList(it) })
+            nextMatchResource.observe(this@MatchesFragment, Observer { updateList(it) })
             selectedLeague.observe(this@MatchesFragment, Observer { setupLeaguePicker(it!!) })
             getMatchByLeague()
         }
@@ -102,11 +102,13 @@ class MatchesFragment : Fragment() {
     private fun showLoading() {
         pbMatches.visible()
         rvMatches.gone()
+        btnPrev.gone()
     }
 
     private fun hideLoading() {
         pbMatches.gone()
         rvMatches.visible()
+        btnPrev.visible()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

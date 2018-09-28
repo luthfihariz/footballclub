@@ -9,8 +9,10 @@ import com.example.luthfihariz.footballclub.data.Resource
 import com.example.luthfihariz.footballclub.data.Status
 import com.example.luthfihariz.footballclub.data.model.Club
 import com.example.luthfihariz.footballclub.ui.clubs.ClubsAdapter
+import com.example.luthfihariz.footballclub.ui.clubsdetail.ClubDetailActivity
 import com.example.luthfihariz.footballclub.ui.favorite.FavoriteViewModel
 import kotlinx.android.synthetic.main.activity_favorite_matches.*
+import org.jetbrains.anko.startActivity
 import org.koin.android.architecture.ext.viewModel
 import org.koin.android.ext.android.inject
 
@@ -24,6 +26,10 @@ class FavoriteClubsActivity : BaseActivity() {
         setContentView(R.layout.activity_favorite_matches)
         setupRecyclerView()
 
+    }
+
+    override fun onResume() {
+        super.onResume()
         with(viewModel) {
             favoriteClubsResource.observe(this@FavoriteClubsActivity, Observer { observeFavClubs(it) })
             getFavoriteClubs()
@@ -48,6 +54,9 @@ class FavoriteClubsActivity : BaseActivity() {
 
     private fun setupRecyclerView() {
         rvFav.layoutManager = LinearLayoutManager(this)
+        adapter.clickListener = {
+            startActivity<ClubDetailActivity>("club" to it)
+        }
         rvFav.adapter = adapter
     }
 }
